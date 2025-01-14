@@ -11,7 +11,7 @@ advanced programming project
      - statistical summary (print(data.describe()))
      - missing data (print(data.isnull().sum()))
      - type of the data (print(data.dtypes))
-     - class distribution in the target var (print(data['target_column'].value_counts()))
+     - class distribution in the target var (print(data['target_column'].value_counts())) # We don't have the classes yet, we need to create the classes ourselves
      - number of the participants
 4. Data Visualisation
 5. Data Preprocessing
