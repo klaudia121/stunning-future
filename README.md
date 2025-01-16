@@ -51,3 +51,4 @@ pokazywać błędy + jakie są nasze decyzje
 - Scikit-learn
 - seaborn
 - Plotly - interactive plot
+
