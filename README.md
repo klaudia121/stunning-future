@@ -16,3 +16,4 @@ advanced programming project
 4. Data Visualisation
 5. Data Preprocessing
 6. Splitting the Dataset?
+7. Fit the model
