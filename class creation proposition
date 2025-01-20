@@ -1,0 +1,80 @@
+import pandas as pd
+import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+#our own class
+class DataPreprocessor:
+    def __init__(self, ftp_path, stress_per_path, social_support_path):
+        """Loading all of the datasets that need to be preprocessed."""
+        self.future_predict = pd.read_csv(ftp_path)
+        self.stress = pd.read_csv(stress_per_path)
+        self.social_support = pd.read_csv(social_support_path)
+
+    def clean_data(self):
+        """Removing rows with missing values in each dataset."""
+        self.future_predict_cleaned = self.future_predict.dropna()
+        self.stress_cleaned = self.stress.dropna()
+        self.social_support_cleaned = self.social_support.dropna()
+
+        #checking the outcome
+        print("Cleaned Data Info:")
+        print(f"FTP: {self.ftp_cleaned.info()}")
+        print(f"Stress: {self.stress_cleaned.info()}")
+        print(f"Social Support: {self.social_support_cleaned.info()}")
+
+    def extract_columns(self, ftp_columns, stress_columns, support_columns):
+        """Extracting specified columns from each dataset."""
+        
+        # Extracting Social satisfaction and Emotional support columns from Social Support Questionnaire
+        self.support_extracted = self.social_support_cleaned[['ID', 'FSoZu_EU', 'FSoZu_Zuf']]
+
+        print("Extracted Stress Data Head:")
+        print(self.stress_extracted.head())
+        
+        print("Extracted Social Support Data Head:")
+        print(self.support_extracted.head())
+
+        # Extracting PSQ Overall Score from Stress Questionnaire
+        self.stress_extracted = self.stress_cleaned[['ID', 'PSQ_OverallScore']]
+
+def perform_dimension_reduction(self):
+        """Conducting PCA if needed"""
+        #Feature extraction on the Social Support Questionary
+        features = self.support_extracted[['FSoZu_EU', 'FSoZu_Zuf']]
+        
+        # Standardizing the features
+        scaler = StandardScaler()
+        features_scaled = scaler.fit_transform(features)
+
+        # Performing PCA
+        pca = PCA(n_components=1)  # Reduce to 1 component for simplicity
+        reduced_features = pca.fit_transform(features_scaled)
+
+        # Adding PCA results to the DataFrame
+        self.support_extracted['PCA_1'] = reduced_features
+        
+        print("Social Support Data with PCA:")
+        print(self.support_extracted.head())
+
+
+#USAGE
+if __name__ == "__main__":
+    ftp_path = "FTP.csv"  # Path to FTP data
+    stress_per_path = "PSQ.csv"  # Path to Perceived Stress Questionnaire data
+    social_support_path = "F-SozU_K-22.csv"  # Path to Social Support data
+    
+    preprocessor = DataPreprocessor(ftp_path, stress_per_path, social_support_path)
+    
+    # Cleaning the data
+    preprocessor.clean_data()
+    
+    # Extracting specified columns from FTP dataset
+    preprocessor.extract_ftp_columns()
+    
+    # Extracting specified columns from other datasets
+    preprocessor.extract_columns()
+    
+    # Performing dimensionality reduction on social support data
+    preprocessor.perform_dimension_reduction()
+
