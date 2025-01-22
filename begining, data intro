@@ -1,0 +1,38 @@
+## Checking the data from the dataset 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+Future_predict = pd.read_csv("FTP.csv")
+
+
+## Include: type, head, shape, sum of the missing data, basic statistic
+
+  #FTP
+type(Future_predict)
+Future_predict.head
+Future_predict.shape
+print(Future_predict.isnull().sum())
+
+  #Stress Perception 
+Stress = pd.read_csv("PSQ.csv")
+Stress.shape
+print(Stress.describe())
+print(Stress.isnull().sum())
+
+  #Support
+Social_support = pd.read_csv("F-SozU_K-22.csv")
+Social_support.shape
+print(Social_support.describe()) 
+print(Social_support.isnull().sum())
+
+#Anxiety 
+Anxiety = pd.read_csv("STAI_G_X2.csv")
+Anxiety.shape
+print(Anxiety.describe())
+print(Anxiety.isnull().sum())
+
+#Metafile
+meta_data = pd.read_csv("META_File.csv")
+meta_data.shape
+print(meta_data.describe())
+print(meta_data.isnull().sum())
