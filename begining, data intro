@@ -9,9 +9,8 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-## Checking the data from the dataset 
+# Checking the data from the dataset 
 ## Include: type, head, shape, sum of the missing data, basic statistic
-
   #FTP
 type(Future_predict)
 Future_predict.head
