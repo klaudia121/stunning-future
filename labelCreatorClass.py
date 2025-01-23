@@ -40,12 +40,22 @@ class CreateLabels:
         print(self.labeled_df.head,"class counts:",self.labeled_df['label'].value_counts())
         sns.displot(x=self.scores, binwidth=1, hue= self.labeled_df['label'])
         plt.show()
-    #def merge with the rest of the dataframe
+    # merge with another dataset for training
+    def merge(self,big_data_df):
+        self.big_data_df = big_data_df
+        #create a whole df
+        # keep only participants present in target df
+        self.big_matched_df = self.big_data_df[big_data_df['ID'].isin(self.ids)]
+        self.big_matched_df = self.big_matched_df.reset_index(drop=True)
+        self.whole_df = pd.concat([self.labeled_df, self.big_matched_df], axis=1)
 
 # end product: a dataframe with subjects IDs and their assigned labels
 ftp_df = pd.read_csv('/home/ree/lemon/FTP.csv')
+demo_df = pd.read_csv('/home/ree/lemon/demographic.csv')
 labels=CreateLabels(ftp_df, 3, 'FTP_SUM')
 labels.summary()
+labels.merge(demo_df)
+print(labels.whole_df.head)
 
 #demo_set = pd.read_csv('/home/ree/lemon/demographic.csv')
 # print(demo_set['AUDIT'].values[0:5].flatten().reshape(-1,1).shape)
