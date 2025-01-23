@@ -16,28 +16,28 @@ type(Future_predict)
 Future_predict.head
 Future_predict.shape
 print(Future_predict.isnull().sum())
-
+#
   #Stress Perception 
 type(Stress Perception)
 Stress = pd.read_csv("PSQ.csv")
 Stress.shape
 print(Stress.describe())
 print(Stress.isnull().sum())
-
+#
   #Support
 type(Social_support)
 Social_support = pd.read_csv("F-SozU_K-22.csv")
 Social_support.shape
 print(Social_support.describe()) 
 print(Social_support.isnull().sum())
-
+#
 #Anxiety 
 type(Anxiety)
 Anxiety = pd.read_csv("STAI_G_X2.csv")
 Anxiety.shape
 print(Anxiety.describe())
 print(Anxiety.isnull().sum())
-
+#
 #Metafile
 type(Metafile)
 meta_data = pd.read_csv("META_File.csv")
