@@ -39,9 +39,6 @@ class Add_data:
 
     data_for_pca = self.df.drop(columns=['ID'], errors='ignore')
 
-    # fill missing values
-    data_for_pca = data_for_pca.interpolate()
-
     # PCA
     pca = PCA(n_components=0.85)
     pca_result = pca.fit_transform(data_for_pca)
