@@ -1,54 +1,23 @@
-# stunning-future
-advanced programming project
-#### Theory presentation 
+# Future prediction model
+This is the project for the advanced programming and machine learning classes. We have tried to create the classification model based on the questionaries implement from the LEMON/dataset (https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/). 
 
-### Requirements
 
-- research questions
-- predicted outcomes
-- what we want to see from the programmers
+# Hypothesis 
+The topic of our project is: *"Relationship between perception of remaining time in life and other traits."*
 
-### Features
+Our research question sounds: Can model predict wether someone has open-ended vs limited time perspective based on other information like gender, usage of the alcohol, anxiety trait, stress perception, optimism-perssimism, socio-emotional support, emotional regulation?
 
-functionalities:
-- uploading data,
-- data exploration,
-- creating model,
-- training model,
-- evaluating the model,
-- data visualisation
+# Variables
+Our considered variables include:
 
-### Milestones and Work distribution
+**DEPENDENT**: Future Time Perspective (FTP)
 
-- clustering of future_time_perspective
-- data exploration of all the data: correlation table,
-- feature extraction from ex CERQ
-- creating model
-- training
-- evaluation
+**INDEPENDENT**: 
+- METAfile: age, geneder, alcohol usage (AUDIT)
+- anxiety trait (STAI-G-X2)
+- stress perception (PSQ)
+- socio-emotional support (F-SozU K-22)
 
-### Expected challanges
 
-pokazywać błędy + jakie są nasze decyzje 
 
-- clustering of our dependnet variable (future prediction)
-- extracting only one subscale from the questionarries
-- making classes work🙂
-- training the model
-- choosing the best learning rate
-- everything can be challenging
-
-### Classes design - our own:)
-
-- ladowanie kwestionariusza +  preprocessing konkrtenego kwestionariusza
-- feature extraction from ex CERQ
-
-### Libraries
-
-- pandas
-- matplotlib
-- numPy
-- Scikit-learn
-- seaborn
-- Plotly - interactive plot
 
