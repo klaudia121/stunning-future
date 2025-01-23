@@ -1,10 +1,15 @@
-## Checking the data from the dataset 
+   # import libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 Future_predict = pd.read_csv("FTP.csv")
+import seaborn as sns
+from sklearn.cluster import KMeans
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
-
+## Checking the data from the dataset 
 ## Include: type, head, shape, sum of the missing data, basic statistic
 
   #FTP
@@ -40,3 +45,25 @@ meta_data = pd.read_csv("META_File.csv")
 meta_data.shape
 print(meta_data.describe())
 print(meta_data.isnull().sum())
+
+
+    # convert psq_df values from str to numeric
+psq_df['PSQ_Tension'] = pd.to_numeric(psq_df['PSQ_Tension'], errors='coerce')
+psq_df['PSQ_Joy'] = pd.to_numeric(psq_df['PSQ_Joy'], errors='coerce')
+psq_df['PSQ_Demands'] = pd.to_numeric(psq_df['PSQ_Demands'], errors='coerce')
+psq_df['PSQ_Worries'] = pd.to_numeric(psq_df['PSQ_Worries'], errors='coerce')
+psq_df['PSQ_OverallScore'] = pd.to_numeric(psq_df['PSQ_OverallScore'], errors='coerce')
+
+
+    # convert values of gender in meat_df from numeric to str
+meta_df['Gender_ 1=female_2=male'] = meta_df['Gender_ 1=female_2=male'].astype(str)
+
+    # psq fill missing values with interpolation 
+psq_df = psq_df.interpolate()
+
+
+
+
+
+
+
