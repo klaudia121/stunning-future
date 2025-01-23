@@ -1,44 +1,51 @@
-   # import libraries
+# import libraries
 import pandas as pd
+import seaborn as sns
 import numpy as np
-import matplotlib.pyplot as plt
-Future_predict = pd.read_csv("FTP.csv")
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
-# Checking the data from the dataset 
+
+## Checking the data from the dataset
+
 ## Include: type, head, shape, sum of the missing data, basic statistic
+
   #FTP
-type(Future_predict)
-Future_predict.head
-Future_predict.shape
-print(Future_predict.isnull().sum())
-#
+ftp_df = pd.read_csv("FTP.csv")
+type(ftp_df)
+ftp_df.head
+ftp_df.shape
+print(ftp_df.isnull().sum())
+
   #Stress Perception 
-type(Stress Perception)
-Stress = pd.read_csv("PSQ.csv")
-Stress.shape
-print(Stress.describe())
-print(Stress.isnull().sum())
-#
-  #Support
-type(Social_support)
-Social_support = pd.read_csv("F-SozU_K-22.csv")
-Social_support.shape
-print(Social_support.describe()) 
-print(Social_support.isnull().sum())
-#
+PSQ_df = pd.read_csv("PSQ.csv")
+type(PSQ_df)
+PSQ_df.shape
+print(PSQ_df.describe())
+print(PSQ_df.isnull().sum())
+
+  #Social support
+sozu_df = pd.read_csv("F-SozU_K-22.csv")
+type(sozu_df )
+sozu_df .shape
+print(sozu_df .describe()) 
+print(sozu_df .isnull().sum())
+
 #Anxiety 
-type(Anxiety)
-Anxiety = pd.read_csv("STAI_G_X2.csv")
-Anxiety.shape
-print(Anxiety.describe())
-print(Anxiety.isnull().sum())
-#
+stai_df= pd.read_csv("STAI_G_X2.csv")
+type(stai_df)
+stai_df.shape
+print(stai_df.describe())
+print(stai_df.isnull().sum())
+
 #Metafile
-type(Metafile)
-meta_data = pd.read_csv("META_File.csv")
-meta_data.shape
-print(meta_data.describe())
-print(meta_data.isnull().sum())
+meta_df = pd.read_csv("META_File.csv")
+type(meta_df)
+meta_df.shape
+print(meta_df.describe())
+print(meta_df.isnull().sum())
 
 
     # convert psq_df values from str to numeric
@@ -54,10 +61,3 @@ meta_df['Gender_ 1=female_2=male'] = meta_df['Gender_ 1=female_2=male'].astype(s
 
     # psq fill missing values with interpolation
 psq_df = psq_df.interpolate()
-
-
-
-
-
-
-

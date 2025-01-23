@@ -49,7 +49,9 @@ class CreateLabels:
         self.big_matched_df = self.big_matched_df.reset_index(drop=True)
         self.whole_df = pd.concat([self.labeled_df, self.big_matched_df], axis=1)
 
-# end product: a dataframe with subjects IDs and their assigned labels
+        # end product: a dataframe with subjects IDs and their assigned labels
+
+# This is how the class can be used
 ftp_df = pd.read_csv('/home/ree/lemon/FTP.csv')
 demo_df = pd.read_csv('/home/ree/lemon/demographic.csv')
 labels=CreateLabels(ftp_df, 3, 'FTP_SUM')
@@ -57,13 +59,4 @@ labels.summary()
 labels.merge(demo_df)
 print(labels.whole_df.head)
 
-#demo_set = pd.read_csv('/home/ree/lemon/demographic.csv')
-# print(demo_set['AUDIT'].values[0:5].flatten().reshape(-1,1).shape)
-#print(demo_set[0].head)
-# scaler = StandardScaler()
-# standard_data = scaler.fit_transform(demo_set['AUDIT'].values.reshape(-1,1))
-
-
-# demo=CreateLabels(demo_set, 3,'Standard_Alcoholunits_Last_28days')
-# demo.summary()
 
