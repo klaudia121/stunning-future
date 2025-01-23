@@ -2,41 +2,41 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-Future_predict = pd.read_csv("FTP.csv")
 
 
 ## Include: type, head, shape, sum of the missing data, basic statistic
 
   #FTP
-type(Future_predict)
-Future_predict.head
-Future_predict.shape
-print(Future_predict.isnull().sum())
+ftp_df = pd.read_csv("FTP.csv")
+type(ftp_df)
+ftp_df.head
+ftp_df.shape
+print(ftp_df.isnull().sum())
 
   #Stress Perception 
-type(Stress Perception)
-Stress = pd.read_csv("PSQ.csv")
-Stress.shape
-print(Stress.describe())
-print(Stress.isnull().sum())
+psq_df = pd.read_csv("PSQ.csv")
+type(psq_df)
+psq_df.shape
+print(psq_df.describe())
+print(psq_df.isnull().sum())
 
   #Support
-type(Social_support)
-Social_support = pd.read_csv("F-SozU_K-22.csv")
-Social_support.shape
-print(Social_support.describe()) 
-print(Social_support.isnull().sum())
+sozu_df = pd.read_csv("F-SozU_K-22.csv")
+type(sozu_df)
+sozu_df.shape
+print(sozu_df.describe()) 
+print(sozu_df.isnull().sum())
 
 #Anxiety 
-type(Anxiety)
-Anxiety = pd.read_csv("STAI_G_X2.csv")
-Anxiety.shape
-print(Anxiety.describe())
-print(Anxiety.isnull().sum())
+stai_df = pd.read_csv("STAI_G_X2.csv")
+type(stai_df)
+stai_df.shape
+print(stai_df.describe())
+print(stai_df.isnull().sum())
 
 #Metafile
-type(Metafile)
-meta_data = pd.read_csv("META_File.csv")
-meta_data.shape
-print(meta_data.describe())
-print(meta_data.isnull().sum())
+meta_df = pd.read_csv("META_File.csv")
+type(meta_df)
+meta_df.shape
+print(meta_df.describe())
+print(meta_df.isnull().sum())
