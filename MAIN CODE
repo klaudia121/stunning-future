@@ -1,0 +1,42 @@
+## Checking the data from the dataset 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+## Include: type, head, shape, sum of the missing data, basic statistic
+
+  #FTP
+ftp_df = pd.read_csv("FTP.csv")
+type(ftp_df)
+ftp_df.head
+ftp_df.shape
+print(ftp_df.isnull().sum())
+
+  #Stress Perception 
+PSQ_df = pd.read_csv("PSQ.csv")
+type(PSQ_df)
+PSQ_df.shape
+print(PSQ_df.describe())
+print(PSQ_df.isnull().sum())
+
+  #Social support
+sozu_df = pd.read_csv("F-SozU_K-22.csv")
+type(sozu_df )
+sozu_df .shape
+print(sozu_df .describe()) 
+print(sozu_df .isnull().sum())
+
+#Anxiety 
+stai_df= pd.read_csv("STAI_G_X2.csv")
+type(stai_df)
+stai_df.shape
+print(stai_df.describe())
+print(stai_df.isnull().sum())
+
+#Metafile
+meta_df = pd.read_csv("META_File.csv")
+type(meta_df)
+meta_df.shape
+print(meta_df.describe())
+print(meta_df.isnull().sum())
