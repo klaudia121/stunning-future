@@ -43,7 +43,7 @@ class CreateLabels:
     #def merge with the rest of the dataframe
 
 # end product: a dataframe with subjects IDs and their assigned labels
-ftp_set = pd.read_csv('/home/ree/lemon/FTP.csv')
+ftp_df= pd.read_csv('/home/ree/lemon/FTP.csv')
 # labels=CreateLabels(ftp_set, 3, 'FTP_SUM')
 # labels.summary()
 
