@@ -1,8 +1,14 @@
-## Checking the data from the dataset 
+# import libraries
 import pandas as pd
+import seaborn as sns
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
+
+## Checking the data from the dataset
 
 ## Include: type, head, shape, sum of the missing data, basic statistic
 
@@ -40,3 +46,18 @@ type(meta_df)
 meta_df.shape
 print(meta_df.describe())
 print(meta_df.isnull().sum())
+
+
+    # convert psq_df values from str to numeric
+psq_df['PSQ_Tension'] = pd.to_numeric(psq_df['PSQ_Tension'], errors='coerce')
+psq_df['PSQ_Joy'] = pd.to_numeric(psq_df['PSQ_Joy'], errors='coerce')
+psq_df['PSQ_Demands'] = pd.to_numeric(psq_df['PSQ_Demands'], errors='coerce')
+psq_df['PSQ_Worries'] = pd.to_numeric(psq_df['PSQ_Worries'], errors='coerce')
+psq_df['PSQ_OverallScore'] = pd.to_numeric(psq_df['PSQ_OverallScore'], errors='coerce')
+
+
+    # convert values of gender in meta_df from numeric to str
+meta_df['Gender_ 1=female_2=male'] = meta_df['Gender_ 1=female_2=male'].astype(str)
+
+    # psq fill missing values with interpolation
+psq_df = psq_df.interpolate()
