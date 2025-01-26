@@ -5,7 +5,9 @@
 
 def train_svm_classifier(indep, y, test_size=0.2, random_state=42):
     """
-    Function trains an SVM classifier with hyperparameter tuning and regularization.
+    Function trains an SVM classifier with hyperparameter tuning. 
+    It is based on hyperpatameter tunning technique called Grid (Grid Search). It it searches through a specified subset of hyperparameters for a given model and evaluates all 
+    possible combinations (incorporates cross-validation).
 
     Parameters:
     - indep: pd.DataFrame or np.ndarray
@@ -29,7 +31,7 @@ def train_svm_classifier(indep, y, test_size=0.2, random_state=42):
     # Defining the SVM model
     svm_model = svm.SVC()
 
-    #Grid Search - evaluates all possible combinations of the provided hyperparameters and selects the combination that results in the best performance based on a specified metric (e.g., accuracy, F1 score)
+    #Grid Search - evaluates all possible combinations of the provided hyperparameters and selects the combination that results in the best performance based on a specified metric
     param_grid = {
         'C': [0.1, 1, 10, 100],  # Regularization parameter - where is the margin of the errors during classification 
         'kernel': ['linear', 'rbf'],  # Kernel types
