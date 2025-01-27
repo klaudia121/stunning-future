@@ -1,12 +1,12 @@
 class Add_data:
-  ### 
+  ''' 
      class Add_data can merge multiple dataframes on ID column (main_df).
      All numerical variables are initially normalized and merged back with non-numerical columns
      Input arguments:
        - df - dataset to be merged with main_df, must be a pandas DataFrame
        - columns (optional) - list of columns in df, that should be merged with main_df
        - dataset_name (optional) - name of the dataset, used for PCA output, must be a string
-  ###
+  '''
 
   main_df = pd.DataFrame()
 
@@ -39,9 +39,10 @@ class Add_data:
     self.df = pd.concat([self.df[excluded_columns], scaled_df], axis=1)
 
   def pick_columns(self):
-    ### checks if main_df is empty. If it is, it assigns self.df[self.columns] to main_df
-        if main_df is not empty, it marges self.df[self.columns] to main_df on 'ID' column
-    ###
+    '''
+    checks if main_df is empty. If it is, it assigns self.df[self.columns] to main_df
+    if main_df is not empty, it marges self.df[self.columns] to main_df on 'ID' column
+    '''
     self.df = self.df[self.columns]
 
     if Add_data.main_df.empty:
@@ -51,11 +52,11 @@ class Add_data:
 
   def feature_extraction(self):
         
-    ###
+    '''
        performs feature extraction using principal component analysis (PCA) on df
        number of components: return number of components that explains 85% of variance
        method concats 'ID' column with dataframe with components and merges it into main_df
-    ###
+    '''
 
     if not isinstance(dataset_name, str):
       raise ValueError("dataset_name must be a string.")
