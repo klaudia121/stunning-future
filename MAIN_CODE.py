@@ -82,7 +82,7 @@ class AddData:
 #y_df = whole_df['label']
 
 
-def train_svm_classifier(indep_df, y_df, test_size=0.2, random_state=42):
+def train_svm_classifier(indep_df, y_df, test_size=0.3, random_state=42):
     """
     Function trains an SVM classifier with hyperparameter tuning. 
     It is based on hyperpatameter tunning technique called Grid (Grid Search). It it searches through a specified subset of hyperparameters for a given model and evaluates all 
@@ -112,7 +112,7 @@ def train_svm_classifier(indep_df, y_df, test_size=0.2, random_state=42):
 
     #Grid Search - evaluates all possible combinations of the provided hyperparameters and selects the combination that results in the best performance based on a specified metric
     param_grid = {
-        'C': [0.1, 1, 10, 100],  # Regularization parameter - where is the margin of the errors during classification 
+        'C': [0.1, 1, 10, 100],  
         'kernel': ['linear', 'rbf'],  # Kernel types
         'gamma': ['scale', 'auto']  # Kernel coefficient for 'rbf' - impact on the decision boundry? 
     }
@@ -132,9 +132,19 @@ def train_svm_classifier(indep_df, y_df, test_size=0.2, random_state=42):
     # Printing evaluation metrics
     print("Best Hyperparameters:", grid_search.best_params_)
     print("Accuracy:", accuracy_score(y_df_test, y_pred))
+    print(' test predicted labels:', y_pred, len(y_pred))
     #print("Best Cross-Validation Accuracy:", grid_search.best_score_)
     #print("Best Cross-Validation Precision:", grid_search.cv_results_['mean_test_precision'][grid_search.best_index_])
-    print(classification_report(y_df_test, y_pred))
+    print(classification_report(y_df_test, y_pred, zero_division=np.nan )) # you can remove zero_division
+
+    results = classification_report(y_df_test, y_pred, zero_division=np.nan, output_dict=True)
+    print(type(results))
+    results = pd.DataFrame(results)
+
+    # Creating a pivot table for heatmap
+    #pivot_table = results.pivot( columns= ["param_C", "param_gamma", "mean_test_score"])
+
+    #plt.bar
 
     return best_model, indep_df_test, y_df_test
 
