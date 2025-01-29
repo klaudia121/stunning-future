@@ -18,7 +18,7 @@ Our considered variables include:
 - stress perception (PSQ)
 - socio-emotional support (F-SozU K-22)
 
-The dataframes are attached in 'Independent variables' or you can download it directly from the forementioned LEMON dataset.
+The dataframes are attached in 'data' or you can download it directly from the forementioned LEMON dataset.
 
 # How to use the code 
 You can download whole code from the file called 'MAIN_CODE'. 
