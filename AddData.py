@@ -41,48 +41,47 @@ class AddData:
     excluded_columns = self.df.drop(columns=numerical_features).columns
     self.df = pd.concat([self.df[excluded_columns], scaled_df], axis=1)
 
-    def pick_columns(self):
+  def pick_columns(self):
       '''
       checks if main_df is empty. If it is, it assigns self.df[self.columns] to main_df
       if main_df is not empty, it marges self.df[self.columns] to main_df on 'ID' column
       '''
 
-      self.df = self.df[self.columns]
+    self.df = self.df[self.columns]
 
-      if AddData.main_df.empty:
-        AddData.main_df = self.df
-      else:
-        AddData.main_df = pd.merge(AddData.main_df, self.df, on='ID', how='outer')
+    if AddData.main_df.empty:
+      AddData.main_df = self.df
+    else:
+      AddData.main_df = pd.merge(AddData.main_df, self.df, on='ID', how='outer')
 
 
-    def feature_extraction(self):  
+  def feature_extraction(self):  
       '''
        performs feature extraction using principal component analysis (PCA) on df
        number of components: return number of components that explains 85% of variance
        method concats 'ID' column with dataframe with components and merges it into main_df
       '''
-
-      if not isinstance(dataset_name, str):
-        raise ValueError("dataset_name must be a string.")
+    if not isinstance(dataset_name, str):
+      raise ValueError("dataset_name must be a string.")
 
         # drop 'ID' column for PCA
-      data_for_pca = self.df.drop(columns=['ID'])
+    data_for_pca = self.df.drop(columns=['ID'])
 
         # PCA resulting with components that explain 85% of variance
-      pca = PCA(n_components=0.85)
-      pca_result = pca.fit_transform(data_for_pca)
+    pca = PCA(n_components=0.85)
+    pca_result = pca.fit_transform(data_for_pca)
 
         # Create a DataFrame for PCA results with appropriate column names
-      pca_df = pd.DataFrame(
-        pca_result, index=self.df.index, columns=[f'{self.dataset_name}_PC{i+1}' for i in range(pca_result.shape[1])])
+    pca_df = pd.DataFrame(
+      pca_result, index=self.df.index, columns=[f'{self.dataset_name}_PC{i+1}' for i in range(pca_result.shape[1])])
 
         # Add the 'ID' column back and merge PCA results
-      pca_df = pd.concat([self.df[['ID']], pca_df], axis=1)
+    pca_df = pd.concat([self.df[['ID']], pca_df], axis=1)
 
-      self.df = pca_df
+    self.df = pca_df
 
         # merge with main_df
-      if AddData.main_df.empty:
-        AddData.main_df = self.df
-      else:
-        AddData.main_df = pd.merge(AddData.main_df, self.df, on='ID', how='outer')
+    if AddData.main_df.empty:
+      AddData.main_df = self.df
+    else:
+      AddData.main_df = pd.merge(AddData.main_df, self.df, on='ID', how='outer')
