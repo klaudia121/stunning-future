@@ -1,4 +1,4 @@
-#Function that based on the GridSearch chooses the best parameters for the implemented data 
+#Function that based on the GridSearch chooses the best parameters for the implemented data:
 
 def train_svm_classifier(indep_df, y, test_size=0.3, random_state=42):
     """
