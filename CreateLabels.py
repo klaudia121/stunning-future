@@ -1,10 +1,8 @@
 import pandas as pd
-from sklearn.cluster import KMeans
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from matplotlib import pyplot as plt
 import seaborn as sns
-
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 class CreateLabels:
     def __init__(self, data_df, n_labels, target_var):
@@ -46,17 +44,16 @@ class CreateLabels:
         #create a whole df
         # keep only participants present in target df
         self.big_matched_df = self.big_data_df[big_data_df['ID'].isin(self.ids)]
-        self.big_matched_df = self.big_matched_df.reset_index(drop=True)
+        self.big_matched_df = self.big_matched_df.reset_index(drop=True).drop(columns='ID')
         self.whole_df = pd.concat([self.labeled_df, self.big_matched_df], axis=1)
 
-        # end product: a dataframe with subjects IDs and their assigned labels
 
-# This is how the class can be used
-ftp_df = pd.read_csv('/home/ree/lemon/FTP.csv')
-demo_df = pd.read_csv('/home/ree/lemon/demographic.csv')
-labels=CreateLabels(ftp_df, 3, 'FTP_SUM')
-labels.summary()
-labels.merge(demo_df)
-print(labels.whole_df.head)
+# end product: a dataframe with subjects IDs and their assigned labels
 
-
+# usage example:
+# ftp_df = pd.read_csv('/home/ree/lemon/FTP.csv')
+# demo_df = pd.read_csv('/home/ree/lemon/demographic.csv')
+# labels=CreateLabels(ftp_df, 3, 'FTP_SUM')
+# labels.summary()
+# labels.merge(demo_df)
+# print(labels.whole_df.head)
