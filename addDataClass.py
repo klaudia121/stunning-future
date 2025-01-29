@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-class Add_data:
+class AddData:
   ''' 
      class Add_data can merge multiple dataframes on ID column (main_df).
      All numerical variables are initially normalized and merged back with non-numerical columns
