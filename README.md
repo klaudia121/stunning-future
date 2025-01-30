@@ -1,38 +1,44 @@
+
 # Future prediction model 
-This is the project for the advanced programming and machine learning class. We have tried to create the classification model based on the questionaries implement from the LEMON/dataset (*https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/*).
+This is the project for the advanced programming and machine learning classes. We have tried to create the classification model 
+based on the questionaries implement from the LEMON/dataset (*https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/*).
 
 # Hypothesis
-The topic of our project is: *"Relationship between perception of remaining time in life and other traits."*
+The topic of the project: *"Relationship between perception of remaining time in life and other traits."*
 
-Our research question sounds: Can model predict wether someone has open-ended vs limited time perspective based on other information like gender, usage of the alcohol, anxiety trait, stress perception, optimism-perssimism, socio-emotional support, emotional regulation?
-
+Research question: Can model predict wether someone has open-ended vs limited time perspective based on other information like gender, 
+usage of the alcohol, anxiety trait, stress perception, socio-emotional support?
 
 # Variables
 Our considered variables include:
 
 **DEPENDENT**: Future Time Perspective (FTP)
 
-**INDEPENDENT**:
+**INDEPENDENT**: 
+
 - METAfile: age, geneder, alcohol usage (AUDIT)
 - anxiety trait (STAI-G-X2)
 - stress perception (PSQ)
 - socio-emotional support (F-SozU K-22)
 
-The dataframes are attached in 'data' or you can download it directly from the forementioned LEMON dataset.
+The datasets used in this project are located in the `data/` folder, and can be also downloaded directly from the forementioned LEMON dataset.
+Other datasets from LEMON can also be used with this code after ensuring datatypes are suitable and some modifications in MAIN_CODE.py file
 
 # How to use the code
 
-You can download whole code from the file called 'MAIN_CODE'. Below is a step-by-step guide on using the code.
-
-**1) Download all od the necessary libraries (look at requirements.txt)**
+**1) Install all necessary libraries (see requirements.txt)**
 
 **2) Data exploration process (checking type, missing values)**
 
-**3) Class for the data preprocessing**
+**3) Ensure the data type is correct before using it with the AddData class**
 
-**4) Class for creating labels**
+**4) Use AddData class for preprocessing and creating main dataframe**
 
-**) SVM MODEL for classification**
+**5) Exclude missing values from main dataframe**
+
+**6) Use CreateLabels class to create labels based on the dependent variable**
+
+**7) SVM MODEL for classification**
 
 The **train_svm_classifier function** is designed to train a Support Vector Machine (SVM) classifier using hyperparameter tuning via Grid Search, trains an SVM classifier, subsequently evaluates the best model (best hyperparameters, display accuracy and classification reports), and visualizes the performance.
 
