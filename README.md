@@ -1,16 +1,14 @@
+**The relationship between perceived remaining lifetime and psycho-social traits.**
 
 # Future prediction model 
 This is the project for the advanced programming and machine learning classes. We have tried to create the classification model 
 based on the questionaries implement from the LEMON/dataset (*https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/*).
 
-# Hypothesis
-The topic of the project: *"Relationship between perception of remaining time in life and other traits."*
-
-Research question: Can model predict wether someone has open-ended vs limited time perspective based on other information like gender, 
-usage of the alcohol, anxiety trait, stress perception, socio-emotional support?
+# Research question
+Can a model predict wether someone has open-ended vs limited time perspective based on other information like gender, usage of the alcohol, anxiety trait, stress perception, socio-emotional support?
 
 # Variables
-Our considered variables include:
+The variables we consider:
 
 **DEPENDENT**: Future Time Perspective (FTP)
 
@@ -26,19 +24,19 @@ Other datasets from LEMON can also be used with this code after ensuring datatyp
 
 # How to use the code
 
-**1) Install all necessary libraries (see requirements.txt)**
+**1) Install all necessary libraries using 'pip install requirements.txt' (see requirements.txt)**
 
-**2) Data exploration process (checking type, missing values)**
+**2) Explore the data (check type, missing values etc.)**
 
-**3) Ensure the data type is correct before using it with the AddData class**
+**3) Ensure your data is in dataframes before using it with the AddData class**
 
-**4) Use AddData class for preprocessing and creating main dataframe**
+**4) Use AddData class for preprocessing and creating the main dataframe**
 
 **5) Exclude missing values from main dataframe**
 
-**6) Use CreateLabels class to create labels based on the dependent variable**
+**6) Use CreateLabels class to create classes for the numeric target variable**
 
-**7) SVM MODEL for classification**
+**7) Use SVM MODEL for classification**
 
 The **train_svm_classifier function** is designed to train a Support Vector Machine (SVM) classifier using hyperparameter tuning via Grid Search, trains an SVM classifier, subsequently evaluates the best model (best hyperparameters, display accuracy and classification reports), and visualizes the performance.
 
