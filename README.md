@@ -1,4 +1,5 @@
-**The relationship between perceived remaining lifetime and psycho-social traits.**
+# **The relationship between perceived remaining lifetime and psycho-social traits**
+
 
 # Future prediction model 
 This is the project for the advanced programming and machine learning classes. We have tried to create the classification model 
@@ -8,7 +9,7 @@ based on the questionaries implement from the LEMON/dataset (*https://ftp.gwdg.d
 Can a model predict wether someone has open-ended vs limited time perspective based on other information like gender, usage of the alcohol, anxiety trait, stress perception, socio-emotional support?
 
 # Variables
-The variables we consider:
+The variables we considered:
 
 **DEPENDENT**: Future Time Perspective (FTP)
 
