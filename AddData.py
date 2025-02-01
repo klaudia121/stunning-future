@@ -9,7 +9,7 @@ class AddData:
      All numerical variables are initially normalized and merged back with non-numerical columns
      Input arguments:
        - df - pandas DataFrame; dataset to be merged with main_df
-       - columns (optional) - list of strings,  columns of columns in df, that should be merged with main_df
+       - columns (optional) - list of strings,  list of columns in df, that should be merged with main_df
        - dataset_name (optional) - string, used for naming PCA components
   '''
 
@@ -17,13 +17,13 @@ class AddData:
 
   def __init__(self, df, columns=None, dataset_name=None):
 
-      # check if df is pd.DataFrame
-    if not isinstance(df, pd.DataFrame):
-            raise ValueError("df must be a pandas DataFrame.")
-
     self.df = df
     self.columns = columns
     self.dataset_name = dataset_name
+
+          # check if df is pd.DataFrame
+    if not isinstance(df, pd.DataFrame):
+            raise ValueError("df must be a pandas DataFrame.")
 
         # Select numerical features
     numerical_features = self.df.select_dtypes(include=np.number).columns
@@ -46,6 +46,9 @@ class AddData:
       checks if main_df is empty. If it is, it assigns self.df[self.columns] to main_df
       if main_df is not empty, it marges self.df[self.columns] to main_df on 'ID' column
       '''
+       # check if columns is either None or a list
+    if columns is not None and not isinstance(columns, list):
+        raise ValueError("columns must be a list or None.")
 
     self.df = self.df[self.columns]
 
@@ -61,6 +64,7 @@ class AddData:
        number of components: return number of components that explains 85% of variance
        method concats 'ID' column with dataframe with components and merges it into main_df
       '''
+      # check if dataset_name is a string
     if not isinstance(dataset_name, str):
       raise ValueError("dataset_name must be a string.")
 
