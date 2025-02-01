@@ -61,5 +61,20 @@ indep_df = pd.read_csv('path_to_your_data.csv')  # for independent variables; a 
 y = indep_df['Future_Time_Perspective']  # for target variable as a part of the bigger dataframe ; a Series or NumPy array
 
 (2) *Calling the SVM training function*
-
 best_model, test_features, test_labels = train_svm_classifier(indep_df, y)
+
+
+**CreateLabels class**
+accepts 3 arguments:  the dataframe containing the target variable, the number of labales(classes) you want to obtain and the column name of the target variable. It creates an attribute *whole_df* which is a dataframe with 3 columns : 'ID' (like participant ID), 'score' - the target value, and 'label' - the target label(class). 
+
+You can use the *summary* method on *whole_df* to get a distribution plot with the classes marked with colors and print the class counts.
+
+Use the *merge* method to merge the *whole_df* with another dataframe. The other dataframe's name must be provided as an argument to the method. 
+
+*usage example*: <br />
+ftp_df = pd.read_csv('/home/ree/lemon/FTP.csv') <br />
+demo_df = pd.read_csv('/home/ree/lemon/demographic.csv') <br />
+labels=CreateLabels(ftp_df, 3, 'FTP_SUM') <br />
+labels.summary() <br />
+labels.merge(demo_df) <br />
+print(labels.whole_df.head) <br />
