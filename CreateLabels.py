@@ -5,8 +5,11 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
 class CreateLabels:
+    # Provide: the dataframe containing the target variable, the number of labales you want to obtain
+    # and the column name of the target variable
     def __init__(self, data_df, n_labels, target_var):
-        # data_df must be pandas DataFrame
+        
+        # data_df must be pandas DataFrame !!
         self.data_df = data_df[['ID', target_var]]
         #print(self.data_df.values[:,1])
         self.n_labels = n_labels
@@ -21,11 +24,11 @@ class CreateLabels:
         scaler = StandardScaler()
         self.standard_data = scaler.fit_transform(self.values)
 
-        #kmeans for clustering
+        # apply kmeans for clustering
         kmeans= KMeans(n_clusters= n_labels, random_state=123)
         self.clusters = kmeans.fit_predict(self.standard_data)
 
-        # Create DataFrame with the subject IDs and labels
+        # create a DataFrame with the subject IDs and labels
         self.ids = self.clean_df.values[:,0].flatten()
         self.scores = self.clean_df[target_var].values.flatten()
         
@@ -34,11 +37,12 @@ class CreateLabels:
             'score': self.scores,
             'label': self.clusters
         })
+    # the method for summary plot with distribution and clusters, print clusters count
     def summary(self):
         print(self.labeled_df.head,"class counts:",self.labeled_df['label'].value_counts())
         sns.displot(x=self.scores, binwidth=1, hue= self.labeled_df['label'])
         plt.show()
-    # merge with another dataset for training
+    # method for merging the just created df with another one, eg the independent variables
     def merge(self,big_data_df):
         self.big_data_df = big_data_df
         #create a whole df
