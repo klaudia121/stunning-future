@@ -3,10 +3,10 @@
 
 # Future prediction model 
 This is the project for the advanced programming and machine learning classes. We have tried to create the classification model 
-based on the questionaries implement from the LEMON/dataset (*https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/*).
+based on the questionaries implemented from the LEMON/dataset (*https://ftp.gwdg.de/pub/misc/MPI-Leipzig_Mind-Brain-Body-LEMON/Behavioural_Data_MPILMBB_LEMON/*).
 
 # Research question
-Can a model predict wether someone has open-ended vs limited time perspective based on other information like gender, usage of the alcohol, anxiety trait, stress perception, socio-emotional support?
+Can a model predict whether someone has open-ended vs limited time perspective based on other information like gender, usage of alcohol, anxiety trait, stress perception, socio-emotional support?
 
 # Variables
 The variables we considered:
@@ -20,8 +20,8 @@ The variables we considered:
 - stress perception (PSQ)
 - socio-emotional support (F-SozU K-22)
 
-The datasets used in this project are located in the `data/` folder, and can be also downloaded directly from the forementioned LEMON dataset.
-Other datasets from LEMON can also be used with this code after ensuring datatypes are suitable and some modifications in MAIN_CODE.py file
+The datasets used in this project are located in the `data/` folder, and can also be downloaded directly from the forementioned LEMON dataset.
+Other datasets from LEMON can also be used with this code after ensuring datatypes are suitable and some modifications in MAIN_CODE.py file.
 
 # How to use the code
 
@@ -63,8 +63,20 @@ y = indep_df['Future_Time_Perspective']  # for target variable as a part of the 
 (2) *Calling the SVM training function*
 best_model, test_features, test_labels = train_svm_classifier(indep_df, y)
 
+**AddData class**
+
+is designed to merge multiple columns of datasets (or features extracted from them with PCA) from the LEMON database on the ID column (main_df).
+All numerical variables are initially normalized.
+     Input arguments:
+       - df - pandas DataFrame; dataset to be merged with main_df
+       - columns (optional) - list of strings,  list of columns in df, that should be merged with main_df
+       - dataset_name (optional) - string, used for naming PCA components
+
+*pick_columns* method can be used to merge columns from the dataset with *main_df*
+*feature_extraction* method can be used to extract PCA components from the dataset and merge them with *main_df*.  
 
 **CreateLabels class**
+
 accepts 3 arguments:  the dataframe containing the target variable, the number of labales(classes) you want to obtain and the column name of the target variable. It creates an attribute *whole_df* which is a dataframe with 3 columns : 'ID' (like participant ID), 'score' - the target value, and 'label' - the target label(class). 
 
 You can use the *summary* method on *whole_df* to get a distribution plot with the classes marked with colors and print the class counts.
