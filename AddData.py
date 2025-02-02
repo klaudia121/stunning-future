@@ -1,4 +1,4 @@
-import pandas as pd
+lgimport pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -21,8 +21,8 @@ class AddData:
     self.columns = columns
     self.dataset_name = dataset_name
 
-          # check if df is pd.DataFrame
-    if not isinstance(df, pd.DataFrame):
+        # check if df is pd.DataFrame
+    if not isinstance(self.df, pd.DataFrame):
             raise ValueError("df must be a pandas DataFrame.")
 
         # Select numerical features
@@ -47,7 +47,7 @@ class AddData:
       if main_df is not empty, it marges self.df[self.columns] to main_df on 'ID' column
       '''
        # check if columns is either None or a list
-      if columns is not None and not isinstance(columns, list):
+      if self.columns is not None and not isinstance(self.columns, list):
           raise ValueError("columns must be a list or None.")
 
       self.df = self.df[self.columns]
@@ -65,7 +65,7 @@ class AddData:
        method concats 'ID' column with dataframe with components and merges it into main_df
       '''
         # check if dataset_name is a string
-      if not isinstance(dataset_name, str):
+      if not isinstance(self.dataset_name, str):
         raise ValueError("dataset_name must be a string.")
 
         # drop 'ID' column for PCA
