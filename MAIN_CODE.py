@@ -1,11 +1,11 @@
 # import libraries
 import pandas as pd
 import seaborn as sns
-import numpy as np
 from matplotlib import pyplot as plt
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
+from CreateLabels import CreateLabels
+from AddData import AddData
+from SVM_function import train_svm_classifier
+
 
 
 ## Checking the data from the dataset
@@ -13,35 +13,37 @@ from sklearn.decomposition import PCA
 ## Include: type, head, shape, sum of the missing data, basic statistic
 
   #FTP
-ftp_df = pd.read_csv("FTP.csv")
-type(ftp_df)
-ftp_df.head
-ftp_df.shape
+ftp_df = pd.read_csv("/home/ree/lemon/FTP.csv")
+print(type(ftp_df))
+print(ftp_df.head())
+print(ftp_df.shape)
+print(ftp_df.describe())
 print(ftp_df.isnull().sum())
 
   #Stress Perception 
-PSQ_df = pd.read_csv("PSQ.csv")
-type(PSQ_df)
-PSQ_df.shape
-print(PSQ_df.describe())
-print(PSQ_df.isnull().sum())
+psq_df = pd.read_csv("/home/ree/lemon/PSQ.csv")
+print(type(psq_df))
+print(psq_df.head())
+print(psq_df.shape)
+print(psq_df.describe())
+print(psq_df.isnull().sum())
 
   #Social support
-sozu_df = pd.read_csv("F-SozU_K-22.csv")
+sozu_df = pd.read_csv("/home/ree/lemon/F-SozU_K-22.csv")
 type(sozu_df )
 sozu_df .shape
 print(sozu_df .describe()) 
 print(sozu_df .isnull().sum())
 
 #Anxiety 
-stai_df= pd.read_csv("STAI_G_X2.csv")
+stai_df= pd.read_csv("/home/ree/lemon/STAI_G_X2.csv")
 type(stai_df)
 stai_df.shape
 print(stai_df.describe())
 print(stai_df.isnull().sum())
 
 #Metafile
-meta_df = pd.read_csv("META_File.csv")
+meta_df = pd.read_csv("/home/ree/lemon/META_File.csv")
 type(meta_df)
 meta_df.shape
 print(meta_df.describe())
@@ -62,33 +64,54 @@ meta_df['Gender_ 1=female_2=male'] = meta_df['Gender_ 1=female_2=male'].astype(s
     # psq fill missing values with interpolation
 psq_df = psq_df.interpolate()
 
-    # create class Add_data instances using FTP, meta and stai files and merge with main_df 
-ftp_df = Add_data(ftp_df, columns=['ID','FTP_SUM'])
+    # create class AddData instances using FTP, meta and stai files and merge with main_df 
+ftp_df = AddData(ftp_df, columns=['ID','FTP_SUM'])
 ftp_df.pick_columns()
 
-meta_df = Add_data(meta_df, columns=['ID','Gender_ 1=female_2=male','AUDIT'])
+meta_df = AddData(meta_df, columns=['ID','Gender_ 1=female_2=male','AUDIT'])
 meta_df.pick_columns()
 
-stai_df = Add_data(stai_df, columns=['ID','STAI_Trait_Anxiety'])
+stai_df = AddData(stai_df, columns=['ID','STAI_Trait_Anxiety'])
 stai_df.pick_columns()
 
-    # create class Add_data instances using sozu and psq files, perform feature extraction and merge with main_df 
-sozu_df = Add_data(sozu_df, columns=[], dataset_name='sozu')
+    # create class AddData instances using sozu and psq files, perform feature extraction and merge with main_df 
+sozu_df = AddData(sozu_df, columns=[], dataset_name='sozu')
 sozu_df.feature_extraction()
 
-psq_df = Add_data(psq_df, columns=[], dataset_name='psq')
+psq_df = AddData(psq_df, columns=[], dataset_name='psq')
 psq_df.feature_extraction()
 
     # print head of main_df
-print(Add_data.main_df.head())
+print(AddData.main_df.head())
 
-    # check if there are any missing values
-Add_data.main_df.isnull().sum()
+AddData.main_df.isnull().sum()
 
-    # drop missing values
-Add_data.main_df.dropna()
+AddData.main_df.dropna()
 
-    # create heatmap with correlation between different variables excluding FTP and gender
-dataplot = sns.heatmap(Add_data.main_df.drop(columns='FTP_SUM').corr(numeric_only=True), cmap="YlGnBu", annot=True)
+# create heatmap with correlation between different variables excluding FTP and gender
+dataplot = sns.heatmap(AddData.main_df.drop(columns='FTP_SUM').corr(numeric_only=True), cmap="YlGnBu", annot=True)
+plt.show()
 
+#remove psq_PC1 and FTP_SUM
+indep_df = AddData.main_df.drop(columns=['psq_PC1','FTP_SUM'])
 
+# df for target variable
+y_df = pd.read_csv('/home/ree/lemon/FTP.csv')
+
+#create labels using class CreateLabels
+labels=CreateLabels(y_df, 3, 'FTP_SUM')
+labels.summary()
+
+#remember that indep_df values are standardized, they're not the original scores
+# this method concatenates indep_df with the albaled target df, craeting a new df called whole df within the class
+labels.merge(indep_df)
+#drop one missing observation from audit
+total_df = labels.whole_df.dropna()
+
+print(total_df.head())
+
+model, indep_df_test, y_df_test = train_svm_classifier(total_df.drop(columns=['ID','score','label']), total_df[['label']].values.ravel())
+
+#'Gender_ 1=female_2=male'
+print(indep_df_test.head(), indep_df_test.shape)
+print(y_df_test)
