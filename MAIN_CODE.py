@@ -14,7 +14,7 @@ from SVM_function import train_svm_classifier
 
   #FTP
 ftp_df = pd.read_csv("/home/ree/lemon/FTP.csv")
-print(type(ftp_df))
+print(ftp_df.dtypes)
 print(ftp_df.head())
 print(ftp_df.shape)
 print(ftp_df.describe())
@@ -22,7 +22,7 @@ print(ftp_df.isnull().sum())
 
   #Stress Perception 
 psq_df = pd.read_csv("/home/ree/lemon/PSQ.csv")
-print(type(psq_df))
+print(psq_df.dtypes)
 print(psq_df.head())
 print(psq_df.shape)
 print(psq_df.describe())
@@ -30,22 +30,25 @@ print(psq_df.isnull().sum())
 
   #Social support
 sozu_df = pd.read_csv("/home/ree/lemon/F-SozU_K-22.csv")
-type(sozu_df )
-sozu_df .shape
-print(sozu_df .describe()) 
-print(sozu_df .isnull().sum())
+print(sozu_df.dtypes)
+print(sozu_df.head())
+print(sozu_df.shape)
+print(sozu_df.describe()) 
+print(sozu_df.isnull().sum())
 
-#Anxiety 
+  #Anxiety 
 stai_df= pd.read_csv("/home/ree/lemon/STAI_G_X2.csv")
-type(stai_df)
-stai_df.shape
+print(stai_df.dtypes)
+print(stai_df.head())
+print(stai_df.shape)
 print(stai_df.describe())
 print(stai_df.isnull().sum())
 
-#Metafile
+  #Metafile
 meta_df = pd.read_csv("/home/ree/lemon/META_File.csv")
-type(meta_df)
-meta_df.shape
+print(meta_df.dtypes)
+print(meta_df.head())
+print(meta_df.shape)
 print(meta_df.describe())
 print(meta_df.isnull().sum())
 
