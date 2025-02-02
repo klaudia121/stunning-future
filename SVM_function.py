@@ -101,7 +101,7 @@ def train_svm_classifier(indep_df, y, test_size=0.3, random_state=42):
 
     # An example scatter plots with two features and predictions to check the data
     f, (ax1, ax2) = plt.subplots(1, 2)
-    ax1.scatter(indep_df_test['sozu_PC1'],indep_df_test['AUDIT'], c = y_df_test)
+    ax1.scatter(indep_df_test['sozu_PC1'],indep_df_test['AUDIT'], c = y_test)
     ax1.set_title('true labels')
     ax1.set_xlabel('perceived social support component')
     ax1.set_ylabel('alcohol consumption')
@@ -113,12 +113,12 @@ def train_svm_classifier(indep_df, y, test_size=0.3, random_state=42):
     ax2.set_xlabel('perceived social support component')
     ax2.set_ylabel('alcohol consumption')
 
-    # plt.scatter(indep_df_test['sozu_PC1'],indep_df_test['AUDIT'], c = y_df_test)
+    # plt.scatter(indep_df_test['sozu_PC1'],indep_df_test['AUDIT'], c = y_test)
     # plt.xlabel('perceived social support component')
     # plt.ylabel('alcohol consumption')
     #plt.scatter(indep_df_test['AUDIT'],indep_df_test['STAI_Trait_Anxiety'], c = y_pred)
     plt.show()
-    cm = confusion_matrix(y_df_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
     print(cm)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
     plt.xlabel('Predicted')
