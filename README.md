@@ -73,6 +73,7 @@ All numerical variables are initially normalized.
        - dataset_name (optional) - string, used for naming PCA components
 
 *pick_columns* method can be used to merge columns from the dataset with *main_df*
+
 *feature_extraction* method can be used to extract PCA components from the dataset and merge them with *main_df*.  
 
 **CreateLabels class**
